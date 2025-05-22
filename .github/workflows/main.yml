@@ -58,8 +58,9 @@ jobs:
           tags:  ${{secrets.USERNAME}}/tp-devops-http-server:latest
           # build on feature branches, push only on main branch
           push: ${{ github.ref == 'refs/heads/main' }}
-
-      -name : verify
-        run : mvn -B verify sonar:sonar -Dsonar.projectKey=<your-project-key> -Dsonar.organization=<your-organization> -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}  --file ./simple-api/pom.xml
+      
+      # add sonarcloud
+      - name: sonarcloud
+        run: mvn -B verify sonar:sonar -Dsonar.projectKey=<your-project-key> -Dsonar.organization=<your-organization> -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}  --file ./simple-api/pom.xml
 
 
