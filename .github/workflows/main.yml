@@ -26,6 +26,7 @@ jobs:
   build-and-push-docker-image:
     needs: test-backend
     runs-on: ubuntu-24.04
+    environment: dockerhub
 
     steps:
       - name: Checkout code
