@@ -39,7 +39,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: Github_Actions/TP/simple-api
-          tags:  ${{secrets.MAIL}}/tp-devops-simple-api:latest
+          tags:  ${{secrets.USERNAME}}/tp-devops-simple-api:latest
           # build on feature branches, push only on main branch
           push: ${{ github.ref == 'refs/heads/main' }}
 
