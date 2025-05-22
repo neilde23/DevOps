@@ -3,7 +3,7 @@ version: '3.8'
 services: # Define the services
   backend: # Simple API
     build:
-      context: ./backend-api/simpleapi # Path to the backend API
+      context: .simple-api # Path to the backend API
       dockerfile: Dockerfile # Dockerfile for the backend API
     container_name: simpleapi # Name of the backend API container
     networks: # Define the network
