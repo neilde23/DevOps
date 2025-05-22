@@ -66,6 +66,6 @@ jobs:
           -Dsonar.organization=neilde23 \
           -Dsonar.host.url=https://sonarcloud.io \
           -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
-          --file Github_Actions/TP/simple-api/pom.xml
+          --file Github_Actions/TP/simple-api
 
 
