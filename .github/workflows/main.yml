@@ -47,7 +47,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: Github_Actions/TP/database
-          tags:  ${{secrets.MAIL}}/tp-devops-database:latest
+          tags:  ${{secrets.USERNAME}}/tp-devops-database:latest
           # build on feature branches, push only on main branch
           push: ${{ github.ref == 'refs/heads/main' }}
 
@@ -55,7 +55,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: Github_Actions/TP/http-server
-          tags:  ${{secrets.MAIL}}/tp-devops-http-server:latest
+          tags:  ${{secrets.USERNAME}}/tp-devops-http-server:latest
           # build on feature branches, push only on main branch
           push: ${{ github.ref == 'refs/heads/main' }}
 
