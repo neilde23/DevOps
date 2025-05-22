@@ -32,6 +32,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Login to DockerHub
+        run: echo "${{ secrets.PASSWORD }}" | docker login --username ${{ secrets.MAIL }} --password-stdin
+
       - name: Build and push backend
         uses: docker/build-push-action@v6
         with:
@@ -55,8 +58,4 @@ jobs:
           tags:  ${{secrets.MAIL}}/tp-devops-http-server:latest
           # build on feature branches, push only on main branch
           push: ${{ github.ref == 'refs/heads/main' }}
-
-      - name: Login to DockerHub
-        run: echo "${{ secrets.PASSWORD }}" | docker login --username ${{ secrets.MAIL }} --password-stdin
-
 
