@@ -1,0 +1,47 @@
+version: '3.8'
+
+services: # Define the services
+  backend: # Simple API
+    build:
+      context: ./backend-api/simpleapi # Path to the backend API
+      dockerfile: Dockerfile # Dockerfile for the backend API
+    container_name: simpleapi # Name of the backend API container
+    networks: # Define the network
+      - app-network
+    depends_on: # Define services that this service depends on
+      - database
+    ports:
+      - "8081:8080"
+
+  database:
+    build:
+      context: ./database
+      dockerfile: Dockerfile
+    container_name: my-database
+    environment:
+      POSTGRES_USER: usr
+      POSTGRES_PASSWORD: pwd
+      POSTGRES_DB: db
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  httpd:
+    build:
+      context: ./http-server
+      dockerfile: Dockerfile
+    container_name: my-proxy
+    ports:
+      - "8088:80"
+    networks:
+      - app-network
+    depends_on:
+      - backend
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  db-data:
