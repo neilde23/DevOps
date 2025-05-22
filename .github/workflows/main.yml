@@ -35,22 +35,22 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: Github_Actions/TP/simple-api
-          push: true
-          tags: neilde23/simpleapi:latest
+          # push: true
+          # tags: neilde23/simpleapi:latest
 
       - name: Build and push database
         uses: docker/build-push-action@v6
         with:
           context: Github_Actions/TP/database
-          push: true
-          tags: neilde23/my-database:latest
+          # push: true
+          # tags: neilde23/my-database:latest
 
       - name: Build and push httpd
         uses: docker/build-push-action@v6
         with:
           context: Github_Actions/TP/http-server
-          push: true
-          tags: neilde23/my-proxy:latest
+          # push: true
+          # tags: neilde23/my-proxy:latest
 
       # - name: Login to DockerHub
       #   run: echo "${{ secrets.PASSWORD }}" | docker login --username ${{ secrets.MAIL }} --password-stdin
