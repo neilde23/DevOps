@@ -31,10 +31,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Login to DockerHub
-        run: echo "${{ secrets.PASSWORD }}" | docker login --username ${{ secrets.MAIL }} --password-stdin
-
-
       - name: Build and push backend
         uses: docker/build-push-action@v6
         with:
@@ -55,3 +51,8 @@ jobs:
           context: Github_Actions/TP/http-server
           push: true
           tags: neilde23/my-proxy:latest
+
+      # - name: Login to DockerHub
+      #   run: echo "${{ secrets.PASSWORD }}" | docker login --username ${{ secrets.MAIL }} --password-stdin
+
+
