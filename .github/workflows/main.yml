@@ -59,6 +59,9 @@ jobs:
           # build on feature branches, push only on main branch
           push: ${{ github.ref == 'refs/heads/main' }}
       
+      - name: Clear Maven Cache
+        run: rm -rf ~/.m2/repository
+
       # add sonarcloud
       - name: Analyze with SonarCloud
         run: |
