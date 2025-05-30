@@ -39,13 +39,15 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: SonarCloud Scan
-        run: cd Github_Actions/TP/simple-api && \
-          mvn -B verify sonar:sonar
-          -Dsonar.projectKey=neilde23_DevOps
-          -Dsonar.organization=neilde23
-          -Dsonar.host.url=https://sonarcloud.io
+      - name: Analyze with SonarCloud
+        run: |
+          cd Github_Actions/TP/simple-api
+          mvn -B verify sonar:sonar \
+          -Dsonar.projectKey=neilde23_DevOps \
+          -Dsonar.organization=neilde23 \
+          -Dsonar.host.url=https://sonarcloud.io \
           -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+
             
   build-and-push-docker-image:
     needs: sonarcloud
@@ -64,7 +66,6 @@ jobs:
         with:
           context: Github_Actions/TP/simple-api
           tags:  ${{secrets.USERNAME}}/tp-devops-simple-api:latest
-          # build on feature branches, push only on main branch
           push: ${{ github.ref == 'refs/heads/main' }}
 
       - name: Build and push database
@@ -72,7 +73,6 @@ jobs:
         with:
           context: Github_Actions/TP/database
           tags:  ${{secrets.USERNAME}}/tp-devops-database:latest
-          # build on feature branches, push only on main branch
           push: ${{ github.ref == 'refs/heads/main' }}
 
       - name: Build and push httpd
@@ -80,5 +80,4 @@ jobs:
         with:
           context: Github_Actions/TP/http-server
           tags:  ${{secrets.USERNAME}}/tp-devops-http-server:latest
-          # build on feature branches, push only on main branch
           push: ${{ github.ref == 'refs/heads/main' }}
