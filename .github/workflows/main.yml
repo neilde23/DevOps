@@ -40,9 +40,8 @@ jobs:
           cache: maven
 
       - name: Analyze with SonarCloud
-        run: |
-          cd Github_Actions/TP/simple-api
-          mvn -B verify sonar:sonar \
+        working-directory: Github_Actions/TP/simple-api
+        run: mvn -B verify sonar:sonar \
           -Dsonar.projectKey=neilde23_DevOps \
           -Dsonar.organization=neilde23 \
           -Dsonar.host.url=https://sonarcloud.io \
