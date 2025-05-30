@@ -32,8 +32,8 @@ jobs:
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v2
-        context: Github_Actions/TP/simple-api
         with:
+          context: Github_Actions/TP/simple-api
           args: >
             -Dsonar.projectKey=neilde23_DevOps
             -Dsonar.organization=neilde23
