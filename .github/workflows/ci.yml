@@ -1,4 +1,4 @@
-name: CI devops 2025
+name: CI Pipeline
 
 on:
   push:
@@ -47,36 +47,3 @@ jobs:
             -Dsonar.organization=neilde23 \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-            
-  build-and-push-docker-image:
-    needs: sonarcloud
-    runs-on: ubuntu-24.04
-    environment: dockerhub
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Login to DockerHub
-        run: echo "${{ secrets.PASSWORD }}" | docker login --username ${{ secrets.MAIL }} --password-stdin
-
-      - name: Build and push backend
-        uses: docker/build-push-action@v6
-        with:
-          context: Github_Actions/TP/simple-api
-          tags:  ${{secrets.USERNAME}}/tp-devops-simple-api:latest
-          push: ${{ github.ref == 'refs/heads/main' }}
-
-      - name: Build and push database
-        uses: docker/build-push-action@v6
-        with:
-          context: Github_Actions/TP/database
-          tags:  ${{secrets.USERNAME}}/tp-devops-database:latest
-          push: ${{ github.ref == 'refs/heads/main' }}
-
-      - name: Build and push httpd
-        uses: docker/build-push-action@v6
-        with:
-          context: Github_Actions/TP/http-server
-          tags:  ${{secrets.USERNAME}}/tp-devops-http-server:latest
-          push: ${{ github.ref == 'refs/heads/main' }}
