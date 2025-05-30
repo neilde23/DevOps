@@ -62,7 +62,7 @@ jobs:
       # add sonarcloud
       - name: sonarcloud
         run: mvn -B verify \
-          --file Github_Actions/TP/simple-api/pom.xml \
+          --file ./Github_Actions/TP/simple-api/pom.xml \
           sonar:sonar \
           -Dsonar.projectKey=neilde23_DevOps \
           -Dsonar.organization=neilde23 \
