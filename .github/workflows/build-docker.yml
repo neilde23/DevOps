@@ -30,7 +30,7 @@ jobs:
       - name: Move Vue dist to http-server
         run: |
           rm -rf http-server/dist
-          cp -r Github_Actions/front/dist http-server/
+          cp -r ./front/dist http-server/
     
       - name: Login to DockerHub
         run: echo "${{ secrets.PASSWORD }}" | docker login --username ${{ secrets.MAIL }} --password-stdin
