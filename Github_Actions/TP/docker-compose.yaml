@@ -17,6 +17,13 @@ services:
     networks:
       - my-network
 
+  front:
+    build: "front"
+    ports:
+      - "3000:3000"
+    networks:
+      - my-network
+
   httpd:
     build: "http-server"
     ports:

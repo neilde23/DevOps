@@ -14,23 +14,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      # - name: Setup Node.js
-      #   uses: actions/setup-node@v4
-      #   with:
-      #     node-version: '16'
-
-      # - name: Build Vue front
-      #   working-directory: Github_Actions/TP/front
-      #   run: |
-      #     yarn config set strict-ssl false
-      #     yarn install
-      #     yarn build
-
-      # - name: Move Vue dist to http-server
-      #   run: |
-      #     rm -rf http-server/dist
-      #     cp -r Github_Actions/TP/front/dist http-server/
     
       - name: Login to DockerHub
         run: echo "${{ secrets.PASSWORD }}" | docker login --username ${{ secrets.MAIL }} --password-stdin
@@ -48,6 +31,13 @@ jobs:
           context: Github_Actions/TP/database
           tags:  ${{ secrets.USERNAME }}/tp-devops-database:latest
           push: true
+
+      - name: Build and push front image
+        uses: docker/build-push-action@v5
+        with:
+          context: Github_Actions/front
+          push: true
+          tags: ${{ secrets.USERNAME }}/tp-devops-front:latest
 
       - name: Build and push httpd
         uses: docker/build-push-action@v6
