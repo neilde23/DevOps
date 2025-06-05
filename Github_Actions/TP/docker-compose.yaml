@@ -24,6 +24,9 @@ services:
 
   httpd:
     build: "http-server"
+    depends_on:
+      - simple-api
+      - front
     ports:
       - "80:80"
     networks:
