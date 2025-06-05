@@ -4,7 +4,7 @@
     image: neilde23/tp-devops-simple-api:latest
     state: started
     ports:
-      - 8081:8080
+      - 8080:8080
     networks:
       - name: "{{ DOCKER_NETWORK }}"
     env:
