@@ -4,7 +4,5 @@
     image: neilde23/tp-devops-front:latest
     state: started
     restart_policy: always
-    published_ports:
-      - "3000:3000"
     networks:
       - name: "{{ DOCKER_NETWORK }}"
