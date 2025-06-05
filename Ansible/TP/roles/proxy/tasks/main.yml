@@ -2,6 +2,9 @@
   community.docker.docker_container:
     name: httpd
     image: neilde23/tp-devops-http-server:latest
+    pull : true
+    recreate: true
+    force_kill: true
     state: started
     ports:
       - 80:80
