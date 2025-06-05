@@ -9,4 +9,4 @@
       - name: "{{ DOCKER_NETWORK }}"
     env:
       DATABASE_HOST: my-database
-      DATABASE_PASSWORD: "{{ DOCKER_NETWORK }}"
+      DATABASE_PASSWORD: "{{ POSTGRES_PASSWORD }}"
