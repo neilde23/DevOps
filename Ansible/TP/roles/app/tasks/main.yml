@@ -1,0 +1,12 @@
+- name: Run simple-api container
+  community.docker.docker_container:
+    name: simple-api
+    image: neilde23/tp-devops-simple-api:latest
+    state: started
+    ports:
+      - "{{ lookup('env', 'BACKEND_PORT') }}:8080"
+    networks:
+      - name: "{{ lookup('env', 'DOCKER_NETWORK') }}"
+    env:
+      DATABASE_HOST: my-database
+      DATABASE_PASSWORD: "{{ lookup('env', 'POSTGRES_PASSWORD') }}"

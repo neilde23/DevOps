@@ -1,0 +1,13 @@
+- name: Run database container
+  community.docker.docker_container:
+    name: my-database
+    image: neilde23/tp-devops-database:latest
+    state: started
+    env:
+      POSTGRES_USER: "{{ lookup('env', 'POSTGRES_USER') }}"
+      POSTGRES_PASSWORD: "{{ lookup('env', 'POSTGRES_PASSWORD') }}"
+      POSTGRES_DB: "{{ lookup('env', 'POSTGRES_DB') }}"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - name: "{{ lookup('env', 'DOCKER_NETWORK') }}"

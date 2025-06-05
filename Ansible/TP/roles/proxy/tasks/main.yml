@@ -1,0 +1,9 @@
+- name: Run HTTP Proxy container
+  community.docker.docker_container:
+    name: httpd
+    image: neilde23/tp-devops-http-server:latest
+    state: started
+    ports:
+      - 80:80
+    networks:
+      - name: "{{ lookup('env', 'DOCKER_NETWORK') }}"

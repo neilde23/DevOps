@@ -1,11 +1,13 @@
-name: Docker Build and Push
+name: Build and Push Docker Images
 
 on:
-  push:
-    branches: [main]
+  workflow_run:
+    workflows: ["SonarCloud Analysis"]
+    types:
+      - completed
 
 jobs:
-  build-and-push-docker-image:
+  build-and-push:
     runs-on: ubuntu-24.04
     environment: dockerhub
 
@@ -21,18 +23,18 @@ jobs:
         with:
           context: Github_Actions/TP/simple-api
           tags:  ${{ secrets.USERNAME }}/tp-devops-simple-api:latest
-          push: ${{ github.ref == 'refs/heads/main' }}
+          push: true
 
       - name: Build and push database
         uses: docker/build-push-action@v6
         with:
           context: Github_Actions/TP/database
           tags:  ${{ secrets.USERNAME }}/tp-devops-database:latest
-          push: ${{ github.ref == 'refs/heads/main' }}
+          push: true
 
       - name: Build and push httpd
         uses: docker/build-push-action@v6
         with:
           context: Github_Actions/TP/http-server
           tags:  ${{ secrets.USERNAME }}/tp-devops-http-server:latest
-          push: ${{ github.ref == 'refs/heads/main' }}
+          push: true

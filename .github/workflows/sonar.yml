@@ -1,0 +1,32 @@
+name: SonarCloud Analysis
+
+on:
+  workflow_run:
+    workflows: ["CI DevOps 2025"]
+    types:
+      - completed
+
+jobs:
+  sonarcloud:
+    runs-on: ubuntu-24.04
+    environment: sonarcloud
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Analyze with SonarCloud
+        working-directory: Github_Actions/TP/simple-api
+        run: |
+          mvn -B verify sonar:sonar \
+            -Dsonar.projectKey=neilde23_DevOps \
+            -Dsonar.organization=neilde23 \
+            -Dsonar.host.url=https://sonarcloud.io \
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
