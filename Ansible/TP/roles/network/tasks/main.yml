@@ -1,6 +1,6 @@
 - name: Create Docker network
   docker_network:
-    name: "{{ lookup('env', 'DOCKER_NETWORK') }}"
+    name: "{{ DOCKER_NETWORK }}"
     driver: bridge
     state: present
   vars:

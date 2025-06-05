@@ -1,11 +1,16 @@
----
 - hosts: all
   become: true
   gather_facts: true
+
+  vars:
+    POSTGRES_USER: usr
+    POSTGRES_PASSWORD: pwd
+    POSTGRES_DB: db
+    DOCKER_NETWORK: my-network
+
   roles:
     - docker
     - network
     - database
     - proxy
     - app
-

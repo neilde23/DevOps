@@ -6,4 +6,4 @@
     ports:
       - 80:80
     networks:
-      - name: "{{ lookup('env', 'DOCKER_NETWORK') }}"
+      - name: "{{ DOCKER_NETWORK }}"
