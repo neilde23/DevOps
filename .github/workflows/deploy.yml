@@ -34,4 +34,5 @@ jobs:
         env:
           ANSIBLE_HOST_KEY_CHECKING: False
         run: |
-          ansible-playbook -i Ansible/TP/inventories/setup.yml Ansible/TP/playbook.yml
+          ansible-playbook -i Ansible/TP/inventories/setup.yml Ansible/TP/playbook.yml \
+          -e "POSTGRES_USER=${{ secrets.POSTGRES_USER }} POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} POSTGRES_DB=${{ secrets.POSTGRES_DB }} DOCKER_NETWORK=${{ secrets.DOCKER_NETWORK }}"
