@@ -15,14 +15,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
 
       - name: Build Vue front
-        working-directory: Github_Actions/TP/front
+        working-directory: front
         run: |
+          yarn config set strict-ssl false
           yarn install
           yarn build
 
