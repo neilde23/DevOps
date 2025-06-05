@@ -1,0 +1,6 @@
+- name: Run nginx container
+  community.docker.docker_container:
+    name: nginx-test
+    image: nginx
+    state: started
+    docker_host: unix:///var/run/docker.sock

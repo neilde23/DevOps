@@ -2,6 +2,9 @@
   community.docker.docker_container:
     name: simple-api
     image: neilde23/tp-devops-simple-api:latest
+    pull : true
+    recreate: true
+    force_kill: true
     state: started
     ports:
       - 8080:8080
