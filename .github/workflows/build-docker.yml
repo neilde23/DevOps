@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build Vue front
-        working-directory: front
+        working-directory: Github_Actions/TP/front
         run: |
           yarn install
           yarn build
