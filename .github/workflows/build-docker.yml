@@ -15,6 +15,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Build Vue front
+        working-directory: front
+        run: |
+          yarn install
+          yarn build
+
+      - name: Move Vue dist to http-server
+        run: |
+          rm -rf http-server/dist
+          cp -r front/dist http-server/
+    
       - name: Login to DockerHub
         run: echo "${{ secrets.PASSWORD }}" | docker login --username ${{ secrets.MAIL }} --password-stdin
 
