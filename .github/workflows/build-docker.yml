@@ -21,7 +21,7 @@ jobs:
           node-version: '18'
 
       - name: Build Vue front
-        working-directory: front
+        working-directory: Github_Actions/TP/front
         run: |
           yarn config set strict-ssl false
           yarn install
